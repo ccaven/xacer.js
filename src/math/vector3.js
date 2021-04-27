@@ -17,7 +17,7 @@ export class Vector3 {
 
 	/**
 	 * Create a clone of the vector
-	 * @returns {ThisType} a clone
+	 * @returns {Vector3} a clone
 	 */
 	get () {
 		return new Vector3(this.x, this.y, this.z);
@@ -26,7 +26,7 @@ export class Vector3 {
 	/**
 	 * Add a vector to this vector
 	 * @param {Vector3} that - The vector to add
-	 * @returns {ThisType} reference to original
+	 * @returns {Vector3} reference to original
 	 */
 	add (that) {
 		this.x += that.x;
@@ -38,7 +38,7 @@ export class Vector3 {
 	/**
 	 * Subtract a vector from
 	 * @param {Vector3} that - The vector to subtract
-	 * @returns {ThisType} reference to original
+	 * @returns {Vector3} reference to original
 	 */
 	sub (that) {
 		this.x -= that.x;
@@ -50,7 +50,7 @@ export class Vector3 {
 	/**
 	 * Scale a vector by some factor
 	 * @param {Number} factor - The amount to scale
-	 * @returns {ThisType} reference to original
+	 * @returns {Vector3} reference to original
 	 */
 	scl (factor) {
 		this.x *= factor;
@@ -62,7 +62,7 @@ export class Vector3 {
 	/**
 	 * Same as scl, but with a vector instead of a scalar
 	 * @param {Vector3} that - The amount to scale
-	 * @returns {ThisType} reference to original
+	 * @returns {Vector3} reference to original
 	 */
 	sclVec (that) {
 		this.x *= that.x;
@@ -81,7 +81,7 @@ export class Vector3 {
 
 	/**
 	 * Normalize a vector
-	 * @returns {ThisType} the normalized vector
+	 * @returns {Vector3} the normalized vector
 	 */
 	normalize () {
 		return this.scl(1 / this.length());
@@ -99,7 +99,7 @@ export class Vector3 {
 	/**
 	 * Compute the cross product with another vector
 	 * @param {Vector3} that - The other vector
-	 * @returns {ThisType} reference to original
+	 * @returns {Vector3} reference to original
 	 */
 	cross (that) {
 		let x = this.y * that.z - this.z * that.y;
