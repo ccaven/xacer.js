@@ -1,15 +1,24 @@
 import Program from "./program.js";
 
+/**
+ * material class which holds all the textures and shaders that will be used to render the object
+ */
 export default class Material {
-	constructor(gl) {
+	/**
+	 * creates a new materil
+	 * @param {WebGLRenderingContext} gl webgl rendering context that will be used to do webgl operations
+	 * @param {ProgramType} type program type which will be used to create the material
+	 */
+	constructor(gl, type) {
 		this.gl = gl;
-		this.program = new Program(gl);
+		this.program = new Program(gl, type);
 		this.attribs = {};
 		this.uniforms = {};
 		this.setAttribLocations();
 		this.setUniformLocations();
 	}
 
+	/* currently unused and has no plan of being used but still here since I might need it later */
 	setAttribLocations() {
 		const gl = this.gl;
 		const program = this.program;

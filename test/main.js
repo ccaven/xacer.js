@@ -1,5 +1,5 @@
 import Renderer from "../src/gl/renderer.js";
-import Object from "../src/gl/object.js";
+import Object3D from "../src/gl/object.js";
 
 const canvas = document.createElement("canvas");
 
@@ -15,10 +15,22 @@ canvas.style.left = "0px";
 
 document.body.appendChild(canvas);
 
+
 const renderer = new Renderer(canvas);
 
-const cube = new Object();
+const cube = new Object3D('cube', 'simple');
 
 renderer.addObject(cube);
 
-renderer.render();
+/* globals performance */
+
+let now = performance.now();
+
+function draw() {
+	cube.rotate((performance.now() - now) / 1000);
+	now = performance.now();
+	renderer.render();
+	window.requestAnimationFrame(draw);
+}
+
+draw();

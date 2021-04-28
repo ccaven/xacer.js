@@ -1,44 +1,18 @@
 import Shader from './shader.js';
 
+/**
+ * wrapper class for webgl program
+ */
 export default class Program {
-	constructor(gl) {
-		let vs = `
-			#version 300 es
-
-			in vec4 aVertexPosition;
-			in vec2 aTextureCoord;
-
-			// uniform mat4 uNormalMatrix;
-			uniform mat4 uModelViewMatrix;
-			uniform mat4 uProjectionMatrix;
-
-			out vec2 vTextureCoord;
-
-			void main() {
-				gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
-				vTextureCoord = aTextureCoord;
-			}
-		`.trim();
-
-		let fs = `
-			#version 300 es
-
-			precision highp float;
-
-			in vec2 vTextureCoord;
-
-			out vec4 outColor;
-
-			const vec3 color = vec3(0.0, 0.0, 1.0);
-
-			void main() {
-				outColor = vec4(color * (max(1.0, 0.0) + 0.3), 1.0);
-			}
-		`.trim();
-
+	/**
+	 * creates a new program from given parameters
+	 * @param {WebGLRenderingContext} gl rendering context used to do webgl operations
+	 * @param {ProgramType} type type of program that this object represents
+	 */
+	constructor(gl, type) {
 		this.gl = gl;
-		fs = new Shader(gl, gl.FRAGMENT_SHADER, fs);
-		vs = new Shader(gl, gl.VERTEX_SHADER, vs);
+		const fs = new Shader(gl, 'fs', type);
+		const vs = new Shader(gl, 'vs', type);
 
 		const program = gl.createProgram();
 
@@ -53,28 +27,72 @@ export default class Program {
 		}
 
 		this.program = program;
+
+		this.vao = gl.createVertexArray();
 	}
 
+	/**
+	 * sets up the VAO for this program
+	 * @param {[BufferInfo]} buffers array of buffers to make the VAO out of
+	 */
+	setupVAO(buffers) {
+		const gl = this.gl;
+		gl.bindVertexArray(this.vao);
+		for (const name in buffers) {
+			const bufferInfo = buffers[name];
+			if (name === 'indices') {
+				gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, bufferInfo.buffer);
+			} else {
+				gl.bindBuffer(gl.ARRAY_BUFFER, bufferInfo.buffer);
+				gl.vertexAttribPointer(this.getAttribLocation(name), bufferInfo.size, gl.FLOAT, false, 0, 0);
+				gl.enableVertexAttribArray(name);
+			}
+		}
+	}
+
+	/**
+	 * gets attribute's location
+	 * @param {String} attribName attribute name
+	 */
 	getAttribLocation(attribName) {
 		return this.gl.getAttribLocation(this.program, attribName);
 	}
 
+	/**
+	 * gets active attributes from an index
+	 * @param {Number} index index of the given attribute
+	 */
 	getActiveAttrib(index) {
 		return this.gl.getActiveAttrib(this.program, index);
 	}
 
+	/**
+	 * gets uniform's location
+	 * @param {String} uniformName uniform name
+	 */
 	getUniformLocation(uniformName) {
 		return this.gl.getUniformLocation(this.program, uniformName);
 	}
 
+	/**
+	 * gets active uniform from an index
+	 * @param {Number} index index of the given uniform
+	 */
 	getActiveUniform(index) {
 		return this.gl.getActiveUniform(this.program, index);
 	}
 
+	/**
+	 * gets a program patameter for given input
+	 * @param {Number} parameter one of the gl.*.
+	 */
 	getProgramParameter(parameter) {
 		return this.gl.getProgramParameter(this.program, parameter);
 	}
 
+	/**
+	 * use this program. use as in webgl sense
+	 */
 	use() {
 		this.gl.useProgram(this.program);
 	}
