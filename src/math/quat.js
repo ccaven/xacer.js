@@ -1,7 +1,7 @@
 // I need to import for the type definition but not for the class itself.
 import { Vector3 } from "./vector3"; // eslint-disable-line no-unused-vars
 
-module.exports = class Quat extends Float32Array {
+export class Quat extends Float32Array {
 	/**
 	 * Create a quaternion from its four basic components, the scalar component
 	 * and the three imaginary components.
