@@ -1,7 +1,7 @@
 /**
  * Stores a three dimensional vector
  */
-export class Vector3 {
+export class Vector3 extends Float32Array{
 
 	/**
 	 * Create a new three dimensional vector
@@ -10,9 +10,7 @@ export class Vector3 {
 	 * @param {Number} z - The z component
 	 */
 	constructor(x, y, z) {
-		this.x = x;
-		this.y = y;
-		this.z = z;
+		super(x, y, z);
 	}
 
 	/**
@@ -20,7 +18,7 @@ export class Vector3 {
 	 * @returns {Vector3} a clone
 	 */
 	get () {
-		return new Vector3(this.x, this.y, this.z);
+		return new Vector3(this[0], this[1], this[2]);
 	}
 
 	/**
@@ -29,9 +27,9 @@ export class Vector3 {
 	 * @returns {Vector3} reference to original
 	 */
 	add (that) {
-		this.x += that.x;
-		this.y += that.y;
-		this.z += that.z;
+		this[0] += that[0];
+		this[1] += that[1];
+		this[2] += that[2];
 		return this;
 	}
 
@@ -41,9 +39,9 @@ export class Vector3 {
 	 * @returns {Vector3} reference to original
 	 */
 	sub (that) {
-		this.x -= that.x;
-		this.y -= that.y;
-		this.z -= that.z;
+		this[0] -= that[0];
+		this[1] -= that[1];
+		this[2] -= that[2];
 		return this;
 	}
 
@@ -53,9 +51,9 @@ export class Vector3 {
 	 * @returns {Vector3} reference to original
 	 */
 	scl (factor) {
-		this.x *= factor;
-		this.y *= factor;
-		this.z *= factor;
+		this[0] *= factor;
+		this[1] *= factor;
+		this[2] *= factor;
 		return this;
 	}
 
@@ -65,9 +63,9 @@ export class Vector3 {
 	 * @returns {Vector3} reference to original
 	 */
 	sclVec (that) {
-		this.x *= that.x;
-		this.y *= that.y;
-		this.z *= that.z;
+		this[0] *= that[0];
+		this[1] *= that[1];
+		this[2] *= that[2];
 		return this;
 	}
 
@@ -76,7 +74,7 @@ export class Vector3 {
 	 * @returns {Number} the computed length
 	 */
 	length () {
-		return Math.hypot(this.x, this.y, this.z);
+		return Math.hypot(this[0], this[1], this[2]);
 	}
 
 	/**
@@ -93,7 +91,7 @@ export class Vector3 {
 	 * @returns {Number} the computed dot product
 	 */
 	dot (that) {
-		return this.x * that.x + this.y * that.y + this.z * that.z;
+		return this[0] * that[0] + this[1] * that[1] + this[2] * that[2];
 	}
 
 	/**
@@ -102,12 +100,12 @@ export class Vector3 {
 	 * @returns {Vector3} reference to original
 	 */
 	cross (that) {
-		let x = this.y * that.z - this.z * that.y;
-		let y = this.z * that.x - this.x * that.z;
-		let z = this.x * that.y - this.y * that.x;
-		this.x = x;
-		this.y = y;
-		this.z = z;
+		let x = this[1] * that[2] - this[2] * that[1];
+		let y = this[2] * that[0] - this[0] * that[2];
+		let z = this[0] * that[1] - this[1] * that[0];
+		this[0] = x;
+		this[1] = y;
+		this[2] = z;
 		return this;
 	}
 

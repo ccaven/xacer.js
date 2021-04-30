@@ -1,7 +1,7 @@
 /**
  * Stores a four dimensional vector
  */
-export class Vector4 {
+export class Vector4 extends Float32Array {
 
 	/**
      * Create a four dimensional vector
@@ -11,10 +11,7 @@ export class Vector4 {
      * @param {Number} w - The w component
      */
 	constructor(x, y, z, w) {
-		this.x = x;
-		this.y = y;
-		this.z = z;
-		this.w = w;
+		super(x, y, z, w);
 	}
 
 	/**
@@ -22,7 +19,7 @@ export class Vector4 {
      * @returns {Vector4} the cloned vector
      */
 	get () {
-		return new Vector4(this.x, this.y, this.z, this.w);
+		return new Vector4(this[0], this[1], this[2], this[3]);
 	}
 
 	/**
@@ -34,10 +31,10 @@ export class Vector4 {
      * @returns {Vector4} reference to original
      */
 	set (x, y, z, w) {
-		this.x = x;
-		this.y = y;
-		this.z = z;
-		this.w = w;
+		this[0] = x;
+		this[1] = y;
+		this[2] = z;
+		this[3] = w;
 		return this;
 	}
 
@@ -47,7 +44,7 @@ export class Vector4 {
      * @returns {Number} the dot product
      */
 	dot (that) {
-		return this.x * that.x + this.y * that.y + this.z * that.z + this.w * that.w;
+		return this[0] * that[0] + this[1] * that[1] + this[2] * that[2] + this[3] * that[3];
 	}
 
 	/**
@@ -55,7 +52,7 @@ export class Vector4 {
      * @returns {Number} the length
      */
 	length () {
-		return Math.hypot(this.x, this.y, this.z, this.w);
+		return Math.hypot(this[0], this[1], this[2], this[3]);
 	}
 
 }

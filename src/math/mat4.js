@@ -1,3 +1,5 @@
+import { Quat } from "./quat";
+import { Vector3 } from "./vector3";
 
 /**
  * Stores a 4x4 matrix
@@ -354,5 +356,51 @@ export class Matrix4 extends Float32Array {
 		let b11 = a22 * a33 - a23 * a32;
 		// Calculate the determinant
 		return b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06;
+	}
+
+	/**
+	 * Creates a matrix from a quaternion rotation, vector translation and vector scale
+	 * @param {Quat} rotation Rotation quaternion
+	 * @param {Vector3} translation Translation vector
+	 * @param {Vector3} scale Scaling vector
+	 * @returns {Matrix4} reference to original
+	 */
+	fromRotationTranslationScale (rotation, translation, scale) {
+		let x = rotation[0],
+			y = rotation[1],
+			z = rotation[2],
+			w = rotation[3];
+		let x2 = x + x;
+		let y2 = y + y;
+		let z2 = z + z;
+		let xx = x * x2;
+		let xy = x * y2;
+		let xz = x * z2;
+		let yy = y * y2;
+		let yz = y * z2;
+		let zz = z * z2;
+		let wx = w * x2;
+		let wy = w * y2;
+		let wz = w * z2;
+		let sx = scale[0];
+		let sy = scale[1];
+		let sz = scale[2];
+		this[0] = (1 - (yy + zz)) * sx;
+		this[1] = (xy + wz) * sx;
+		this[2] = (xz - wy) * sx;
+		this[3] = 0;
+		this[4] = (xy - wz) * sy;
+		this[5] = (1 - (xx + zz)) * sy;
+		this[6] = (yz + wx) * sy;
+		this[7] = 0;
+		this[8] = (xz + wy) * sz;
+		this[9] = (yz - wx) * sz;
+		this[10] = (1 - (xx + yy)) * sz;
+		this[11] = 0;
+		this[12] = translation[0];
+		this[13] = translation[1];
+		this[14] = translation[2];
+		this[15] = 1;
+		return this;
 	}
 }

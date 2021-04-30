@@ -3,7 +3,7 @@
 /**
  * Stores a two dimensional vector
  */
-export class Vector2 {
+export class Vector2 extends Float32Array {
 
 	/**
 	 * Create a new two dimensional vector
@@ -11,10 +11,6 @@ export class Vector2 {
 	 * @param {Number} y - The y component
 	 */
 	constructor(x, y) {
-		this.x = x;
-		this.y = y;
+		super(x, y);
 	}
-
-
-
 }
