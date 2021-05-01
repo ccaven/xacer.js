@@ -3,7 +3,7 @@
 /**
  * Stores a two dimensional vector
  */
-export class Vector2 extends Float32Array {
+export default class Vector2 extends Float32Array {
 
 	/**
 	 * Create a new two dimensional vector

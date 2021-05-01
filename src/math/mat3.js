@@ -2,7 +2,7 @@
 /**
  * The Matrix3 class holds a 3x3 matrix
  */
-export class Matrix3 extends Float32Array {
+export default class Matrix3 extends Float32Array {
 
 	/**
      * Create an identity 3x3 matrix

@@ -1,7 +1,7 @@
 /**
  * Stores a four dimensional vector
  */
-export class Vector4 extends Float32Array {
+export default class Vector4 extends Float32Array {
 
 	/**
      * Create a four dimensional vector

@@ -4,7 +4,7 @@ import { Vector3 } from "./vector3";
 /**
  * Stores a 4x4 matrix
  */
-export class Matrix4 extends Float32Array {
+export default class Matrix4 extends Float32Array {
 
 	/**
      * Create a new identity matrix

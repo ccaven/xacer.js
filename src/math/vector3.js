@@ -1,7 +1,7 @@
 /**
  * Stores a three dimensional vector
  */
-export class Vector3 extends Float32Array{
+export default class Vector3 extends Float32Array{
 
 	/**
 	 * Create a new three dimensional vector
