@@ -1,11 +1,11 @@
 
-import { Vector3 } from "../math/vector3.js";
+import Vector3 from "../math/vector3.js";
 
-import { Quat } from "../math/quat.js";
+import Quat from "../math/quat.js";
 
-import { Matrix4 } from "../math/mat4.js";
+import Matrix4 from "../math/mat4.js";
 
-import { Transform } from "./transform.js";
+import Transform from "./transform.js";
 
 import Component from "./components/component.js";
 
@@ -13,7 +13,7 @@ import Component from "./components/component.js";
  * The GameObject class represents any object in the game.
  * You're welcome.
  */
-export class GameObject {
+export default class GameObject {
 
 	/**
 	 * Create a new GameObject instance
@@ -21,6 +21,7 @@ export class GameObject {
 	constructor () {
 
 		/**
+		 * The list of every component attached to the gameobject
 		 * @type {Component[]}
 		 */
 		this.components = {};
@@ -31,7 +32,8 @@ export class GameObject {
 	 * @param {String} name - The name of the component
 	 * @param {Component} obj
 	 */
-	addComponent (name, obj) {
+	addComponent (obj) {
+		let name = obj.constructor.name;
 		this.components[name] = obj;
 	}
 
@@ -44,6 +46,9 @@ export class GameObject {
 		return this.components[name];
 	}
 
+	/**
+	 * Run the start method of every component
+	 */
 	startComponents () {
 		for (let component in this.components) {
 			this.components[component].start();

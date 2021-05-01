@@ -1,12 +1,6 @@
 import GameObject from "../gameobject.js";
 
 export default class Component {
-
-	/**
-	 * The name of the component
-	 */
-	static name = "Component";
-
 	/**
 	 * Create a new Component instance
 	 * @param {GameObject} gameObject - The parent of the component

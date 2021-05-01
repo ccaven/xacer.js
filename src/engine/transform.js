@@ -1,9 +1,9 @@
 
-import { Vector3 } from "../math/vector3.js";
+import Vector3 from "../math/vector3.js";
 
-import { Quat } from "../math/quat.js";
+import Quat from "../math/quat.js";
 
-import { Matrix4 } from "../math/mat4.js";
+import Matrix4 from "../math/mat4.js";
 
 /**
  * Represents a position, rotation, and scale of an object

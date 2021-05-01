@@ -1,5 +1,3 @@
-
-
 /**
  * Stores a two dimensional vector
  */

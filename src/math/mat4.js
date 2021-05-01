@@ -1,5 +1,5 @@
-import { Quat } from "./quat";
-import { Vector3 } from "./vector3";
+import Quat from "./quat";
+import Vector3 from "./vector3";
 
 /**
  * Stores a 4x4 matrix
