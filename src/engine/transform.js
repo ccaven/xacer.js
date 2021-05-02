@@ -13,8 +13,10 @@ export default class Transform {
 	/**
 	 * Create a new Transform object
 	 */
-	constructor (parent) {
+	constructor (parent, gameObject) {
 		this.parent = parent || null;
+
+		this.gameObject = gameObject;
 
 		this.position = new Vector3(0, 0, 0);
 		this.rotation = new Quat(1, 0, 0, 0);

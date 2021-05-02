@@ -20,6 +20,8 @@ export default class GameObject {
 	 */
 	constructor () {
 
+		this.transform = new Transform(null, this);
+
 		/**
 		 * The list of every component attached to the gameobject
 		 * @type {Component[]}
@@ -29,12 +31,11 @@ export default class GameObject {
 
 	/**
 	 * Add a component to the GameObject
-	 * @param {String} name - The name of the component
-	 * @param {Component} obj
+	 * @param {Class} ComponentConstructor
 	 */
-	addComponent (obj) {
-		let name = obj.constructor.name;
-		this.components[name] = obj;
+	addComponent (ComponentConstructor) {
+		let name = ComponentConstructor.name;
+		this.components[name] = new ComponentConstructor(this);
 	}
 
 	/**
