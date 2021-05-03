@@ -1,5 +1,5 @@
 // I need to import for the type definition but not for the class itself.
-import Vector3 from "./vector3"; // eslint-disable-line no-unused-vars
+import Vector3 from "./vector3.js"; // eslint-disable-line no-unused-vars
 
 export default class Quat extends Float32Array {
 	/**

@@ -9,6 +9,8 @@ import Transform from "./transform.js";
 
 import Component from "./components/component.js";
 
+import Scene from "./scene.js";
+
 /**
  * The GameObject class represents any object in the game.
  * You're welcome.
@@ -17,8 +19,11 @@ export default class GameObject {
 
 	/**
 	 * Create a new GameObject instance
+	 * @param {Engine} engine - The parent engine object
 	 */
-	constructor () {
+	constructor (engine) {
+
+		this.engine = engine;
 
 		this.transform = new Transform(null, this);
 
@@ -27,11 +32,20 @@ export default class GameObject {
 		 * @type {Component[]}
 		 */
 		this.components = {};
+
+		this.init();
+	}
+
+	/**
+	 * Initialize the components of the gameObject
+	 */
+	init () {
+		return null;
 	}
 
 	/**
 	 * Add a component to the GameObject
-	 * @param {Class} ComponentConstructor
+	 * @param {typeof Component} ComponentConstructor
 	 */
 	addComponent (ComponentConstructor) {
 		let name = ComponentConstructor.name;
@@ -53,6 +67,15 @@ export default class GameObject {
 	startComponents () {
 		for (let component in this.components) {
 			this.components[component].start();
+		}
+	}
+
+	/**
+	 * Run the update method of every component
+	 */
+	updateComponents () {
+		for (let component in this.components) {
+			this.components[component].update();
 		}
 	}
 

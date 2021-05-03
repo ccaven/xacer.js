@@ -1,5 +1,5 @@
-import Quat from "./quat";
-import Vector3 from "./vector3";
+import Quat from "./quat.js";
+import Vector3 from "./vector3.js";
 
 /**
  * Stores a 4x4 matrix

@@ -1,6 +1,8 @@
-import Renderer from "../src/gl/renderer.js";
-import Object3D from "../src/gl/object.js";
+// Import necessary classes
+import Scene from "../src/engine/scene.js";
+import Player from "../src/engine/prefabs/player.js";
 
+// Create the canvas
 const canvas = document.createElement("canvas");
 
 canvas.width = window.innerWidth;
@@ -15,14 +17,30 @@ canvas.style.left = "0px";
 
 document.body.appendChild(canvas);
 
+const scene = new Scene();
+
+// Add all the initial gameObjects here
+scene.createGameObject(Player);
+
+// Initialize each component
+scene.start();
+
+function draw () {
+	scene.update();
+	window.requestAnimationFrame(draw);
+}
+
+draw();
+
+/*
+import Renderer from "../src/gl/renderer.js";
+import Object3D from "../src/gl/object.js";
 
 const renderer = new Renderer(canvas);
 
 const cube = new Object3D('cube', 'simple');
 
 renderer.addObject(cube);
-
-/* globals performance */
 
 let now = performance.now();
 
@@ -34,3 +52,4 @@ function draw() {
 }
 
 draw();
+*/

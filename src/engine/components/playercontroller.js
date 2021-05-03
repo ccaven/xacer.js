@@ -1,20 +1,14 @@
-import Input from "../input";
-import Component from "./component";
+import Input from "../input.js";
+import Component from "./component.js";
 
 export default class PlayerController extends Component {
 	start () {
-		this.collider = this.gameObject.getComponent("Collider");
-
-		this.transform = this.gameObject.transform;
-
-		this.rigidbody = this.gameObject.getComponent("Rigidbody");
+		console.log("Initializing player controller!");
 	}
 
 	update () {
 
-		if (Input.getAxis(Input.HORIZONTAL)) {
-			this.rigidbody.applyForce(this.transform.getForward());
-		}
+		//console.log("Updating player controller!");
 
 	}
 }
