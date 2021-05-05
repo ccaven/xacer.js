@@ -1,6 +1,7 @@
 // Import necessary classes
 import Scene from "../src/engine/scene.js";
 import Player from "../src/engine/prefabs/player.js";
+import Engine from "../src/engine.js";
 
 // Create the canvas
 const canvas = document.createElement("canvas");
@@ -16,6 +17,10 @@ canvas.style.top = "0px";
 canvas.style.left = "0px";
 
 document.body.appendChild(canvas);
+
+const engine = new Engine();
+
+engine.addScene(Scene);
 
 const scene = new Scene();
 

@@ -1,3 +1,4 @@
+import Engine from "../engine.js";
 import GameObject from "./gameobject.js";
 
 /**
@@ -6,17 +7,26 @@ import GameObject from "./gameobject.js";
 export default class Scene {
 	/**
 	 * Create a new Scene instance
-	 * @param {String} name - The name of the scene
+	 * @param {Engine} engine - The parent engine object
 	 */
-	constructor(name="New Scene") {
-
-		this.name = name;
-
+	constructor(engine) {
 		/**
 		 * Stores the list of gameObjects
 		 * @type {GameObject[]}
 		 */
 		this.gameObjects = [];
+
+		this.name = "New Scene";
+
+		this.hasStarted = false;
+
+		this.engine = engine;
+
+		this.init();
+	}
+
+	init () {
+		console.log("New Scene created!");
 	}
 
 	/**
@@ -31,7 +41,7 @@ export default class Scene {
 	 * Start each gameObject
 	 */
 	start () {
-		this.gameObjects.forEach(e => e.startComponents());
+		if (!this.hasStarted) this.gameObjects.forEach(e => e.startComponents());
 	}
 
 	/**

@@ -1,14 +1,16 @@
 import Input from "../input.js";
+
+
 import Component from "./component.js";
 
-export default class PlayerController extends Component {
+export default class MyComponent extends Component {
 	start () {
-		console.log("Initializing player controller!");
+		this.rigidbody = this.gameObject.getComponent("Rigidbody");
 	}
 
 	update () {
 
-		//console.log("Updating player controller!");
-
 	}
 }
+
+

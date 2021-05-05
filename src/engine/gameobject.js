@@ -19,11 +19,11 @@ export default class GameObject {
 
 	/**
 	 * Create a new GameObject instance
-	 * @param {Engine} engine - The parent engine object
+	 * @param {Scene} scene - The parent scene object
 	 */
-	constructor (engine) {
+	constructor (scene) {
 
-		this.engine = engine;
+		this.scene = scene;
 
 		this.transform = new Transform(null, this);
 
