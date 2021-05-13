@@ -33,6 +33,8 @@ export default class GameObject {
 		 */
 		this.components = {};
 
+		this.enabled = true;
+
 		this.init();
 	}
 

@@ -8,19 +8,10 @@ export default class Component {
 	constructor (gameObject) {
 		this.gameObject = gameObject;
 		this.transform = gameObject.transform;
+		this.init();
 	}
 
-	/**
-	 * The start method is called the very first frame
-	 */
-	start () {
-		console.log("Start method call");
-	}
-
-	/**
-	 * The update method is called every frame
-	 */
-	update () {
-		console.log("Update method call");
+	init () {
+		this.name = "New Component";
 	}
 }

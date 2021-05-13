@@ -2,6 +2,7 @@
 import Scene from "../src/engine/scene.js";
 import Player from "../src/engine/prefabs/player.js";
 import Engine from "../src/engine.js";
+import GameScene from "../src/engine/scenes/gamescene.js";
 
 // Create the canvas
 const canvas = document.createElement("canvas");
@@ -20,7 +21,11 @@ document.body.appendChild(canvas);
 
 const engine = new Engine();
 
-engine.addScene(Scene);
+engine.addScene(GameScene);
+
+engine.setSceneByName("GameScene");
+
+
 
 const scene = new Scene();
 
