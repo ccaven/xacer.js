@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black hole raytracing</title>
+	<style>
+	 * {
+		overflow: visible;
+
+	 }
+	</style>
+</head>
+<body style="margin: 0; overflow: hidden">
+
+    <!-- Vertex shader -->
+    <script type="text/glsl" id="standard.vsh">
+        #version 300 es
+        in vec2 a_position;
+        out vec2 v_position;
+        void main () {
+            gl_Position = vec4(a_position, 0, 1);
+            v_position = a_position * 0.5 + 0.5;
+        }
+    </script>
+
+    <!-- Fragment shader -->
+    <script type="text/glsl" id="standard.fsh">
+        // replace with fragment.glsl
+    </script>
+
+    <!-- Javascript -->
+    <script type="module" src="main.js"></script>
+
+</body>
+</html>
