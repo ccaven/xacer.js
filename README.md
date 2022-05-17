@@ -2,6 +2,8 @@
 
 [xacer.js](https://github.com/ccaven/xacer.js) is a WebGL-based game engine.
 
+This is an incomplete side project meant to learn the basics of how Entity-Component frameworks function.
+
 ## Overview
 A component-based engine, xacer.js is built to be flexible yet powerful. <br>
 Components should extend the `Component` class. <br>
